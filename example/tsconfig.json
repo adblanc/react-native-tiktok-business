@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "react-native-tiktok-business": ["../src/index"],
+      "react-native-tiktok-business/*": ["../src/*"]
+    }
+  }
+}

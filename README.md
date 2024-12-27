@@ -31,3 +31,35 @@ bun add react-native-tiktok-business
 		]
 	],
 ```
+
+## Usage
+
+```typescript
+import TiktokBusiness from "react-native-tiktok-business";
+
+// Identify a user
+TiktokBusiness.identify("user-external-id", "username", "phone", "email");
+
+// Clear user identification
+TiktokBusiness.logout();
+
+// Request tracking authorization (iOS only)
+const status = await TiktokBusiness.requestTrackingAuthorization();
+
+// Check if debug mode is enabled
+const isDebug = TiktokBusiness.isDebugMode();
+
+// Manually flush events (iOS only)
+TiktokBusiness.flush();
+
+// Track a simple event
+TiktokBusiness.trackEvent("purchase");
+
+// Track event with custom data
+TiktokBusiness.trackEvent("purchase_completed", "order-123", [
+  { key: "currency", value: "USD" },
+  { key: "value", value: "99.99" },
+  { key: "quantity", value: "1" },
+  { key: "price", value: "99.99" },
+]);
+```

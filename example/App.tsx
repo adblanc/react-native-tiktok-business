@@ -1,4 +1,4 @@
-import ReactNativeTiktokBusiness, {
+import TiktokBusiness, {
   TikTokTrackingAuthorizationStatus,
 } from "react-native-tiktok-business";
 import { Button, SafeAreaView, ScrollView, Text, View } from "react-native";
@@ -12,32 +12,30 @@ export default function App() {
           <Button
             title="Identify"
             onPress={() => {
-              ReactNativeTiktokBusiness.identify("test-external-id");
+              TiktokBusiness.identify("test-external-id");
             }}
           />
           <Button
             title="Logout"
             onPress={() => {
-              ReactNativeTiktokBusiness.logout();
+              TiktokBusiness.logout();
             }}
           />
         </Group>
         <Group name="Debug Mode">
-          <Text>
-            {ReactNativeTiktokBusiness.isDebugMode() ? "True" : "False"}
-          </Text>
+          <Text>{TiktokBusiness.isDebugMode() ? "True" : "False"}</Text>
         </Group>
         <Group name="Track Events">
           <Button
             title="Track Event"
             onPress={() => {
-              ReactNativeTiktokBusiness.trackEvent("test-event");
+              TiktokBusiness.trackEvent("test-event");
             }}
           />
           <Button
             title="Track Event with Data"
             onPress={() => {
-              ReactNativeTiktokBusiness.trackEvent(
+              TiktokBusiness.trackEvent(
                 "test-event-with-data",
                 "test-event-with-data-id",
                 [
@@ -55,7 +53,7 @@ export default function App() {
             title="Request Tracking Authorization"
             onPress={async () => {
               const status =
-                await ReactNativeTiktokBusiness.requestTrackingAuthorization();
+                await TiktokBusiness.requestTrackingAuthorization();
 
               const showStatusMessage = () => {
                 alert(TikTokTrackingAuthorizationStatus[status]);

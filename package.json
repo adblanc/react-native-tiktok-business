@@ -1,6 +1,6 @@
 {
   "name": "react-native-tiktok-business",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React native module to integrate TikTok business SDK",
   "main": "build/index.js",
   "types": "build/index.d.ts",

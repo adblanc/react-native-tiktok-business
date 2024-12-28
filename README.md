@@ -24,7 +24,7 @@ For Expo apps, you'll need to add both the plugin configuration and the required
           "ios": {
             "appId": "YOUR_APP_ID",
             "tiktokAppId": "YOUR_TIKTOK_APP_ID",
-            "disableTrackingDialog": true // Optional, defaults to false
+            "disableAppTrackingDialog": true // Optional, defaults to false
           },
           "android": {
             "appId": "YOUR_APP_ID",

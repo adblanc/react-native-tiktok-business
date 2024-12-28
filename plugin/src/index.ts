@@ -11,6 +11,7 @@ interface PluginConfigType {
     appId: string;
     tiktokAppId: string;
     disableAppTrackingDialog?: boolean;
+    disablePaymentTracking?: boolean;
   };
   android?: {
     appId: string;
@@ -31,6 +32,8 @@ const withTiktokBusiness: ConfigPlugin<PluginConfigType> = (
       config.modResults["TikTokBusinessDisableAppTrackingDialog"] =
         ios.disableAppTrackingDialog;
       config.modResults["TikTokBusinessDebug"] = debug;
+      config.modResults["TikTokBusinessDisablePaymentTracking"] =
+        ios.disablePaymentTracking;
       return config;
     });
   }

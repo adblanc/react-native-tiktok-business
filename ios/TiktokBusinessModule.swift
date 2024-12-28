@@ -74,6 +74,13 @@ public class TiktokBusinessAppDelegateSubscriber: ExpoAppDelegateSubscriber {
             config?.disableAppTrackingDialog()
         }
 
+        if (ttConfig.disablePaymentTracking) {
+          if (ttConfig.debug) {
+            print("[TiktokBusiness] Disabling payment tracking")
+          }
+            config?.disablePaymentTracking()
+        }
+
             TikTokBusiness.initializeSdk(config) { success, error in
             if (!success) { // initialization failed
               if (ttConfig.debug) {
@@ -89,15 +96,16 @@ public class TiktokBusinessAppDelegateSubscriber: ExpoAppDelegateSubscriber {
         return true
       }
 
-    private func getTikTokConfig() -> (appId: String, tiktokAppId: String, disableTrackingDialog: Bool, debug: Bool) {
+    private func getTikTokConfig() -> (appId: String, tiktokAppId: String, disableTrackingDialog: Bool, debug: Bool, disablePaymentTracking: Bool) {
       guard let infoPlist = Bundle.main.infoDictionary,
             let appId = infoPlist["TikTokBusinessAppId"] as? String,
             let tiktokAppId = infoPlist["TikTokBusinessTiktokAppId"] as? String else {
-        return ("", "", false, false)
+        return ("", "", false, false, false)
       }
       
       let disableTrackingDialog = infoPlist["TikTokBusinessDisableAppTrackingDialog"] as? Bool ?? false
       let debug = infoPlist["TikTokBusinessDebug"] as? Bool ?? false
-      return (appId, tiktokAppId, disableTrackingDialog, debug)
+      let disablePaymentTracking = infoPlist["TikTokBusinessDisablePaymentTracking"] as? Bool ?? false
+      return (appId, tiktokAppId, disableTrackingDialog, debug, disablePaymentTracking)
     }
 }

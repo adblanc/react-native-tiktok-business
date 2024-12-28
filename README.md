@@ -12,25 +12,38 @@ bun add react-native-tiktok-business
 
 ## Expo config plugin:
 
-```tsx
-	plugins: [
-		[
-		'react-native-tiktok-business',
-		{
-			ios: {
-				appId: 'YOUR_APP_ID',
-				tiktokAppId: 'YOUR_TIKTOK_APP_ID',
-				disableTrackingDialog: true, // Optional, defaults to false
-			},
-			android: {
-				appId: 'YOUR_APP_ID',
-				tiktokAppId: 'YOUR_TIKTOK_APP_ID',
-			},
-			debug: true, // Optional, defaults to false
-		},
-		]
-	],
+For Expo apps, you'll need to add both the plugin configuration and the required iOS privacy permission:
+
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "react-native-tiktok-business",
+        {
+          "ios": {
+            "appId": "YOUR_APP_ID",
+            "tiktokAppId": "YOUR_TIKTOK_APP_ID",
+            "disableTrackingDialog": true // Optional, defaults to false
+          },
+          "android": {
+            "appId": "YOUR_APP_ID",
+            "tiktokAppId": "YOUR_TIKTOK_APP_ID"
+          },
+          "debug": true // Optional, defaults to false
+        }
+      ]
+    ],
+    "ios": {
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This identifier will be used to provide a more personalized experience for you."
+      }
+    }
+  }
+}
 ```
+
+The `NSUserTrackingUsageDescription` is required for iOS devices to request tracking authorization. Without this permission string, the tracking dialog will not be shown to users.
 
 ## Usage
 

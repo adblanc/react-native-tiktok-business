@@ -18,12 +18,11 @@ interface PluginConfigType {
     tiktokAppId: string;
     enableAutoIapTracking?: boolean;
   };
-  debug?: boolean;
 }
 
 const withTiktokBusiness: ConfigPlugin<PluginConfigType> = (
   config,
-  { ios, android, debug }
+  { ios, android }
 ) => {
   if (ios) {
     config = withInfoPlist(config, (config) => {
@@ -31,7 +30,6 @@ const withTiktokBusiness: ConfigPlugin<PluginConfigType> = (
       config.modResults["TikTokBusinessTiktokAppId"] = ios.tiktokAppId;
       config.modResults["TikTokBusinessDisableAppTrackingDialog"] =
         ios.disableAppTrackingDialog;
-      config.modResults["TikTokBusinessDebug"] = debug;
       config.modResults["TikTokBusinessDisablePaymentTracking"] =
         ios.disablePaymentTracking;
       return config;
@@ -58,11 +56,6 @@ const withTiktokBusiness: ConfigPlugin<PluginConfigType> = (
         mainApplication,
         "TikTokBusinessEnableAutoIapTracking",
         android.enableAutoIapTracking ? "true" : "false"
-      );
-      AndroidConfig.Manifest.addMetaDataItemToMainApplication(
-        mainApplication,
-        "TikTokBusinessDebug",
-        debug ? "true" : "false"
       );
       return config;
     });

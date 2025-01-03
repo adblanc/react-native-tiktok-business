@@ -1,6 +1,7 @@
 # React Native TikTok Business
 
 TikTok Business SDK for React Native.
+In debug mode, events should appear in the "Test Event" tab.
 
 ## Installation
 
@@ -29,8 +30,7 @@ For Expo apps, you'll need to add both the plugin configuration and the required
           "android": {
             "appId": "YOUR_APP_ID",
             "tiktokAppId": "YOUR_TIKTOK_APP_ID"
-          },
-          "debug": true // Optional, defaults to false
+          }
         }
       ]
     ],

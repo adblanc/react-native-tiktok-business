@@ -10,26 +10,25 @@ class TiktokBusinessApplicationLifecycleListener : ApplicationLifecycleListener 
 	override fun onCreate(application: Application) {
 	  val appId = getAppId(application)
 	  val ttAppId = getTikTokAppId(application)
-	  val isDebug = isDebugMode(application)
       
 	  val ttConfig = TikTokBusinessSdk.TTConfig(application.applicationContext)
 	    .setAppId(appId) 
 	    .setTTAppId(ttAppId)
 
-	if (isDebug) {
+	if (BuildConfig.DEBUG) {
 	  ttConfig.openDebugMode()
 	  ttConfig.setLogLevel(TikTokBusinessSdk.LogLevel.DEBUG)
 	}
       
 	  TikTokBusinessSdk.initializeSdk(ttConfig, object : TikTokBusinessSdk.TTInitCallback {
 	    override fun success() {
-		if (isDebug) {
+		if (BuildConfig.DEBUG) {
 		  println("TikTokBusinessSdk initialized")
 		}
 	    }
 	    
 	    override fun fail(code: Int, msg: String) {
-	      if (isDebug) {
+	      if (BuildConfig.DEBUG) {
 		println("TikTokBusinessSdk initialization failed")
 	      }
 	    }
@@ -51,13 +50,5 @@ class TiktokBusinessApplicationLifecycleListener : ApplicationLifecycleListener 
 	    PackageManager.GET_META_DATA
 	  )
 	  return applicationInfo?.metaData?.getString("TikTokBusinessTiktokAppId")
-	}
-
-	private fun isDebugMode(application: Application): Boolean {
-	  val applicationInfo = application.packageManager.getApplicationInfo(
-	    application.packageName, 
-	    PackageManager.GET_META_DATA
-	  )
-	  return applicationInfo?.metaData?.getBoolean("TikTokBusinessDebug") ?: false
 	}
       }

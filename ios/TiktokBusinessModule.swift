@@ -62,10 +62,10 @@ public class TiktokBusinessAppDelegateSubscriber: ExpoAppDelegateSubscriber {
         let ttConfig = getTikTokConfig()
         let config = TikTokConfig.init(appId: ttConfig.appId, tiktokAppId: ttConfig.tiktokAppId)
 
-        if (ttConfig.debug) {
-            config?.enableDebugMode()
-            config?.setLogLevel(TikTokLogLevelVerbose)
-        }
+        #if DEBUG
+        config?.enableDebugMode()
+        config?.setLogLevel(TikTokLogLevelVerbose)
+        #endif
 
         if (ttConfig.disableTrackingDialog) {
           if (ttConfig.debug) {

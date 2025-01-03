@@ -56,7 +56,9 @@ export default function App() {
                 await TiktokBusiness.requestTrackingAuthorization();
 
               const showStatusMessage = () => {
-                alert(TikTokTrackingAuthorizationStatus[status]);
+                if (status) {
+                  alert(TikTokTrackingAuthorizationStatus[status]);
+                }
               };
 
               showStatusMessage();

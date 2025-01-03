@@ -4,6 +4,7 @@ import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import com.tiktok.TikTokBusinessSdk;
 import com.tiktok.appevents.base.TTBaseEvent
+import expo.modules.kotlin.Promise
 
 
 class TiktokBusinessModule : Module() {
@@ -28,6 +29,10 @@ class TiktokBusinessModule : Module() {
 
     Function("logout") {
       return@Function TikTokBusinessSdk.logout()
+    }
+
+    AsyncFunction("requestTrackingAuthorization") { promise: Promise ->
+      promise.resolve(null)
     }
 
     Function("trackEvent") { eventName: String, eventId: String?, eventData: List<Map<String, String>>? ->
